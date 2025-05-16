@@ -16,7 +16,7 @@ public class deuxiemeApplication extends Application {
         stage.setScene(scene);
         stage.setTitle ("Projet Réservation");
         stage.show();
-        stage.setResizable(false);
+        // stage.setResizable(false);
 
         File fileCss = new File("css" + File.separator + "premierStyle.css");
         scene.getStylesheets().add(fileCss.toURI().toString());
