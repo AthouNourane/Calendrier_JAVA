@@ -2,7 +2,6 @@ package vue;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -14,11 +13,9 @@ import modele.DateCalendrier;
 
 import java.util.List;
 
-import static modele.ConstantesCalendrier.JOURS_SEMAINE_ABR;
+public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
 
-public class VBoxRootMoisV2 extends VBox implements ConstantesCalendrier {
-
-    public VBoxRootMoisV2() {
+    public VBoxCalendrier() {
         Button BoutonPrec = new Button("<");
         Button ButtonSuiv = new Button(">");
         Button BoutonDernier = new Button(">>");

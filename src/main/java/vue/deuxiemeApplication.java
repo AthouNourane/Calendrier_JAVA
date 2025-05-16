@@ -9,7 +9,7 @@ import java.io.File;
 
 public class deuxiemeApplication extends Application {
     public void start(Stage stage)  {
-        VBox root = new VBoxRootMoisV2();
+        VBox root = new VBoxCalendrier();
         Scene scene = new Scene(root, 300, 300);
 
         stage.setScene(scene);
