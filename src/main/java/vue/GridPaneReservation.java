@@ -1,5 +1,6 @@
 package vue;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -7,29 +8,34 @@ import modele.DateCalendrier;
 
 public class GridPaneReservation extends GridPane {
     public GridPaneReservation() {
-        GridPane menuReservation = new GridPane();
 
-        this.setGridLinesVisible(true);
-        this.setPadding(new Insets(40));
-        this.setHgap(20);
-        this.setVgap(20);
+        // this.setGridLinesVisible(true);
+        this.setHgap(5);
+        this.setVgap(5);
 
         Label dateReservation = new Label(new DateCalendrier().toString());
 
-        Label labelCours = new Label("Cours");
+        Label labelCours = new Label("_Cours");
+        labelCours.setMnemonicParsing(true);
         TextField textCours = new TextField();
         labelCours.setLabelFor(textCours);
-
+        textCours.setPromptText("Entre le nom d'une réservation...");
+        Platform.runLater(textCours::requestFocus); // Platform.runLater(() -> textCours.requestFocus());
 
         Label labelNiveau = new Label("Niveau");
         ToggleGroup toggleNiveau = new ToggleGroup();
-        RadioButton buttonDebutant = new RadioButton("débutant");
+        RadioButton buttonDebutant = new RadioButton("_débutant");
+        buttonDebutant.setMnemonicParsing(true);
+        buttonDebutant.setSelected(true);
         buttonDebutant.setToggleGroup(toggleNiveau);
-        RadioButton buttonMoyen = new RadioButton("moyen");
+        RadioButton buttonMoyen = new RadioButton("_moyen");
+        buttonMoyen.setMnemonicParsing(true);
         buttonMoyen.setToggleGroup(toggleNiveau);
-        RadioButton buttonAvance = new RadioButton("avancé");
+        RadioButton buttonAvance = new RadioButton("_avancé");
+        buttonAvance.setMnemonicParsing(true);
         buttonAvance.setToggleGroup(toggleNiveau);
-        RadioButton buttonExpert = new RadioButton("expert");
+        RadioButton buttonExpert = new RadioButton("_expert");
+        buttonExpert.setMnemonicParsing(true);
         buttonExpert.setToggleGroup(toggleNiveau);
 
         Label labelHoraire = new Label("Horaire");
@@ -46,8 +52,10 @@ public class GridPaneReservation extends GridPane {
             heureFin.getItems().add(i);
         }
 
-        Button boutonAnnuler = new Button("Annuler");
-        Button boutonEnregistrer = new Button("Enregistrer");
+        Button boutonAnnuler = new Button("_Annuler");
+        boutonAnnuler.setMnemonicParsing(true);
+        Button boutonEnregistrer = new Button("_Enregistrer");
+        boutonEnregistrer.setMnemonicParsing(true);
 
 
         this.add(dateReservation, 1, 0, 5, 1);
