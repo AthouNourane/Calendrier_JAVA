@@ -1,0 +1,137 @@
+package vue;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import modele.CalendrierDuMois;
+import modele.ConstantesCalendrier;
+import modele.DateCalendrier;
+
+import java.util.List;
+
+import static modele.ConstantesCalendrier.JOURS_SEMAINE_ABR;
+
+public class VBoxRootMoisV2 extends VBox implements ConstantesCalendrier {
+
+    public VBoxRootMoisV2() {
+        Button BoutonPrec = new Button("<");
+        Button ButtonSuiv = new Button(">");
+        Button BoutonDernier = new Button(">>");
+        Button BoutonPremier = new Button("<<");
+
+        DateCalendrier today = new DateCalendrier();
+
+        // stackPaneMois : pour empiler 1 conteneur par mois (ici un TilePane)
+        StackPane stackPaneMois = new StackPane();
+
+        // Les boutons seront insérés dans buttonGroup ainsi l'utilisateur en sélectionne 1 seul à la fois
+        ToggleGroup buttonGroup = new ToggleGroup();
+        for (int numMois = 1; numMois <= 12; numMois++) {
+            CalendrierDuMois monthCalendar = new CalendrierDuMois(numMois, today.getAnnee());
+
+            // 1 conteneur tilePane par mois
+            TilePane tilePane = new TilePane(Orientation.HORIZONTAL);
+            tilePane.setPrefColumns(7);
+
+            // 1 ligne pour lu, ma, ... et 4, 5, 6 lignes pour les boutons Date
+            tilePane.setPrefRows(monthCalendar.getDates().size() / 7 + 1);
+
+            // setId -> à utiliser dans la feuille de style
+            tilePane.setId("opaque");
+
+            // boucle pour créer la 1ere ligne lu, ma, ...
+            for (String jourAb : JOURS_SEMAINE_ABR) {
+                Label labelJour = new Label(jourAb);
+                tilePane.getChildren().add(labelJour);
+            }
+
+            for (DateCalendrier date : monthCalendar.getDates()) {
+                // création d'1 bouton par jour
+                ToggleButton boutonDate = new ToggleButton(Integer.toString(date.getJour()));
+
+                // insère le boutonDate dans le groupe
+                boutonDate.setToggleGroup(buttonGroup);
+                tilePane.getChildren().add(boutonDate);
+
+                // associe une date au toggleBouton, utilisé par la suite
+
+                boutonDate.setUserData(date);
+                boutonDate.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        boutonDate.setId("selection");
+                        System.out.println(boutonDate.getUserData());
+                        System.out.println(boutonDate.getId());
+                    }
+                });
+                // les attributs id sont utilisés dans la feuille de style
+                if (date.getMois()!= monthCalendar.getMois()) {
+                    boutonDate.setId("dateHorsMois");
+                }
+                if (date.isToday()) {
+                    boutonDate.setId("today");
+                }
+            }
+
+            tilePane.setAccessibleText(MOIS[numMois - 1]);
+            stackPaneMois.getChildren().add(tilePane);
+        }
+        List<Node> liste = stackPaneMois.getChildren();
+        final int dernierIndice = liste.size()-1;
+        Node premierMois = liste.getFirst();
+        Node dernierMois = liste.get(dernierIndice);
+
+        while (!liste.get(dernierIndice).getAccessibleText().equals(MOIS[today.getMois() - 1])){
+            liste.get(dernierIndice).toBack();
+        }
+        HBox alignement = new HBox();
+        this.getChildren().add(stackPaneMois);
+
+        // Alignement des boutons
+        alignement.getChildren().add(BoutonPremier);
+        alignement.getChildren().add(BoutonPrec);
+        alignement.getChildren().add(ButtonSuiv);
+        alignement.getChildren().add(BoutonDernier);
+
+        alignement.setAlignment(Pos.CENTER);
+        this.getChildren().add(alignement);
+
+
+        ButtonSuiv.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("bouton suivant");
+                liste.getFirst().toFront();
+            }
+        });
+
+        BoutonPrec.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("bouton précédent");
+                liste.getLast().toBack();
+            }
+        });
+
+        BoutonDernier.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                while (liste.getLast() != dernierMois) {
+                    liste.getLast().toBack();
+                }
+            }
+        });
+
+
+        BoutonPremier.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                while (liste.getLast() != premierMois) {
+                    liste.getFirst().toFront();
+                }
+            }
+        });
+
+    }
+}
