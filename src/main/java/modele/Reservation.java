@@ -4,13 +4,15 @@ public class Reservation implements Comparable<Reservation>{
     private Date dateReservation;
     private PlageHoraire plageHoraireReservation;
     private String intituleReservation;
+    private String niveauReservation;
 
-    public Reservation (Date parDate, PlageHoraire parPlageHoraire, String parIntitule) throws ExceptionReservation {
+    public Reservation (Date parDate, PlageHoraire parPlageHoraire, String parIntitule, String parNiveau) throws ExceptionReservation {
         if (parIntitule == null)
             throw new ExceptionReservation(0);
         dateReservation = parDate;
         plageHoraireReservation = parPlageHoraire;
         intituleReservation = parIntitule;
+        niveauReservation = parNiveau;
     }
 
     public String toString() {
@@ -33,6 +35,7 @@ public class Reservation implements Comparable<Reservation>{
     }
 
     public boolean estValide(){
-        return dateReservation.estValide() && plageHoraireReservation.estValide() && intituleReservation != null && intituleReservation.length() != 0;
+        return dateReservation.estValide() && plageHoraireReservation.estValide() && intituleReservation != null
+                && !intituleReservation.isEmpty() && niveauReservation != null && !niveauReservation.isEmpty();
     }
 }
