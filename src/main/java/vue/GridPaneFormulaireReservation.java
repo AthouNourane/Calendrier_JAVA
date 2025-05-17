@@ -52,6 +52,10 @@ public class GridPaneFormulaireReservation extends GridPane {
         minDebut = new ComboBox<>();
         heureFin = new ComboBox<>();
         minFin = new ComboBox<>();
+        heureDebut.setValue(7);
+        minDebut.setValue(0);
+        heureFin.setValue(9);
+        minFin.setValue(0);
         for (int i = 0; i < 60; i += 15) {
             minDebut.getItems().add(i);
             minFin.getItems().add(i);
@@ -122,4 +126,8 @@ public class GridPaneFormulaireReservation extends GridPane {
         return minFin.getValue();
     }
 
+    public String getNiveau(){
+        RadioButton selNiveau = (RadioButton) toggleNiveau.getSelectedToggle();
+        return selNiveau.getText().substring(1);
+    }
 }
