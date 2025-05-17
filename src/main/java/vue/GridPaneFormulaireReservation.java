@@ -1,13 +1,13 @@
 package vue;
 
+import controleur.Controleur;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import modele.DateCalendrier;
 
-public class GridPaneReservation extends GridPane {
-    public GridPaneReservation() {
+public class GridPaneFormulaireReservation extends GridPane {
+    public GridPaneFormulaireReservation(Controleur controleur) {
 
         // this.setGridLinesVisible(true);
         this.setHgap(5);

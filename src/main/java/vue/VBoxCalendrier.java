@@ -1,5 +1,6 @@
 package vue;
 
+import controleur.Controleur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
 
-    public VBoxCalendrier() {
+    public VBoxCalendrier(Controleur controleur) {
         Button BoutonPrec = new Button("<");
         Button ButtonSuiv = new Button(">");
         Button BoutonDernier = new Button(">>");
