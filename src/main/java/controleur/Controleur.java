@@ -16,10 +16,8 @@ public class Controleur implements EventHandler {
         VBoxAffichagePlanning planningPane = HBoxRoot.getPlanningPane();
 
         // la source de event est un ToggleButton du calendrier
-        if (event.getSource() instanceof ToggleButton) {
-            ToggleButton clickedButton = (ToggleButton) event.getSource();
+        if (event.getSource() instanceof ToggleButton clickedButton) {
             DateCalendrier selDate = (DateCalendrier) clickedButton.getUserData();
-            System.out.println(selDate.toString());
             reservationPane.updateDateSel(selDate);
             planningPane.updateSemaine(selDate);
 
