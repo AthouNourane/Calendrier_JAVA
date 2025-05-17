@@ -20,19 +20,25 @@ public class VBoxAffichagePlanning extends VBox {
         semaine = new Label("Semaine " + date.getWeekOfYear());
 
         tableDesReservations = new TableView<>();
+
         TableColumn<Reservation, DateCalendrier> dateColumn = new TableColumn<>("Date");
         TableColumn<Reservation, String> coursColumn = new TableColumn<>("Cours");
         TableColumn<Reservation, String> niveauColumn = new TableColumn<>("Niveau");
         TableColumn<Reservation, PlageHoraire> horaireColumn = new TableColumn<>("Heure");
+
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         coursColumn.setCellValueFactory(new PropertyValueFactory<>("intitule"));
         niveauColumn.setCellValueFactory(new PropertyValueFactory<>("niveau"));
         horaireColumn.setCellValueFactory(new PropertyValueFactory<>("horaire"));
+
         tableDesReservations.getColumns().add(dateColumn);
         tableDesReservations.getColumns().add(coursColumn);
         tableDesReservations.getColumns().add(niveauColumn);
         tableDesReservations.getColumns().add(horaireColumn);
-
+        for (TableColumn<Reservation, ?> table : tableDesReservations.getColumns()) {
+            table.setResizable(false);
+        }
+        dateColumn.setPrefWidth(175);
         this.getChildren().add(semaine);
         this.getChildren().add(tableDesReservations);
     }
