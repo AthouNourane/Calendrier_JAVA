@@ -1,18 +1,52 @@
 package vue;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import modele.DateCalendrier;
+import modele.PlageHoraire;
+import modele.PlanningCollections;
+import modele.Reservation;
 
 public class VBoxAffichagePlanning extends VBox {
     private Label semaine;
+    private TableView<Reservation> tableDesReservations;
+    private PlanningCollections planning = HBoxRoot.getPlanning();
+    private DateCalendrier date;
     public VBoxAffichagePlanning(){
-        semaine = new Label("Semaine " + new DateCalendrier().getWeekOfYear());
+        date = new DateCalendrier();
+        semaine = new Label("Semaine " + date.getWeekOfYear());
+
+        tableDesReservations = new TableView<>();
+        TableColumn<Reservation, DateCalendrier> dateColumn = new TableColumn<>("Date");
+        TableColumn<Reservation, String> coursColumn = new TableColumn<>("Cours");
+        TableColumn<Reservation, String> niveauColumn = new TableColumn<>("Niveau");
+        TableColumn<Reservation, PlageHoraire> horaireColumn = new TableColumn<>("Heure");
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        coursColumn.setCellValueFactory(new PropertyValueFactory<>("intitule"));
+        niveauColumn.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+        horaireColumn.setCellValueFactory(new PropertyValueFactory<>("horaire"));
+        tableDesReservations.getColumns().add(dateColumn);
+        tableDesReservations.getColumns().add(coursColumn);
+        tableDesReservations.getColumns().add(niveauColumn);
+        tableDesReservations.getColumns().add(horaireColumn);
 
         this.getChildren().add(semaine);
+        this.getChildren().add(tableDesReservations);
     }
 
-    public void updateSemaine(DateCalendrier date){
-        semaine.setText("Semaine " + date.getWeekOfYear());
+    public void updateSemaine(DateCalendrier parDate){
+        tableDesReservations.getItems().clear();
+        if (planning.getChMapReservations().containsKey(parDate.getWeekOfYear())) {
+            System.out.println(parDate.getWeekOfYear());
+            System.out.println(planning);
+            for (Reservation reservation : planning.getChMapReservations().get(parDate.getWeekOfYear())) {
+                tableDesReservations.getItems().add(reservation);
+            }
+        }
+        date = parDate;
+        semaine.setText("Semaine " + parDate.getWeekOfYear());
     }
 }
