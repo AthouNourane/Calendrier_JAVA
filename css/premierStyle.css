@@ -13,23 +13,77 @@
     -fx-text-fill: coral;
 }
 
-.scroll-pane{
-    -fx-background: #ddf5ee;
-    -fx-border-color: #5F9EA0;
+/* === GÉNÉRAL === */
+.root {
+    -fx-background-color: #fdf6e3; /* beige doux */
+    -fx-font-family: "Segoe UI", sans-serif;
 }
 
-#dateHorsMois{
-    -fx-text-fill: #bfbcbc;
+/* === LABELS === */
+.label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 
-#opaque{
-    -fx-background-color: white;
+#moisLabel {
+    -fx-text-fill: #2980b9;
+    -fx-font-size: 18px;
+    -fx-padding: 10 0 5 0;
 }
 
-.toggle-button{
-    -fx-background-color: white;
+/* === BOUTONS DE NAVIGATION === */
+.button {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #34495e;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10 8;
+    -fx-cursor: hand;
 }
 
-.toggle-button:selected{
-    -fx-background-color: #df8383;
+.button:hover {
+    -fx-background-color: #d0dce3;
+}
+
+/* === TOGGLEBUTTONS POUR LES DATES === */
+.toggle-button {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 13px;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+}
+
+.toggle-button:hover {
+    -fx-background-color: #e6f2ff;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+    -fx-border-color: #2471a3;
+}
+
+/* === JOURS EN GRIS (ex: fin/ début de mois) === */
+.toggle-button.inactive {
+    -fx-text-fill: #bdc3c7;
+}
+
+/* === DIMANCHE EN ROUGE === */
+.toggle-button.sunday {
+    -fx-text-fill: #e74c3c;
+}
+
+/* === MISE EN PAGE EN OPTION === */
+.calendar-grid {
+    -fx-hgap: 5;
+    -fx-vgap: 5;
+    -fx-padding: 10;
 }
