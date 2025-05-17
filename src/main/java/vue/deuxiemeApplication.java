@@ -11,7 +11,7 @@ import java.io.File;
 public class deuxiemeApplication extends Application {
     public void start(Stage stage)  {
         HBox root = new HBoxRoot();
-        Scene scene = new Scene(root, 500, 300);
+        Scene scene = new Scene(root, 700, 300);
 
         stage.setScene(scene);
         stage.setTitle ("Projet Réservation");
