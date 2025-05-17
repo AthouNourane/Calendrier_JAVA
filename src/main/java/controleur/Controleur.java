@@ -13,6 +13,7 @@ public class Controleur implements EventHandler {
     public void handle(Event event) {
         PlanningCollections planning = HBoxRoot.getPlanning();
         GridPaneFormulaireReservation reservationPane = HBoxRoot.getReservationPane();
+        VBoxAffichagePlanning planningPane = HBoxRoot.getPlanningPane();
 
         // la source de event est un ToggleButton du calendrier
         if (event.getSource() instanceof ToggleButton) {
@@ -20,6 +21,8 @@ public class Controleur implements EventHandler {
             DateCalendrier selDate = (DateCalendrier) clickedButton.getUserData();
             System.out.println(selDate.toString());
             reservationPane.updateDateSel(selDate);
+            planningPane.updateSemaine(selDate);
+
         }
         // la source de event est le bouton "Enregistrer" du formulaire de réservation
         if (event.getSource() instanceof Button) {
