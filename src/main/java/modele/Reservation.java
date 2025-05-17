@@ -16,7 +16,8 @@ public class Reservation implements Comparable<Reservation>{
     }
 
     public String toString() {
-        return "Réservation " + intituleReservation + " le : " + dateReservation + " de " + plageHoraireReservation;
+        return "Réservation " + intituleReservation + " (" + niveauReservation + ") "
+                + "le : " + dateReservation + " de " + plageHoraireReservation;
     }
 
     public Date getDate() {
