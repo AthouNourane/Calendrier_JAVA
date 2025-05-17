@@ -9,22 +9,30 @@ import modele.DateCalendrier;
 
 public class GridPaneFormulaireReservation extends GridPane {
     private Label dateReservation;
+    private DateCalendrier selDate;
+    private TextField textCours;
+    private ComboBox<Integer> heureDebut;
+    private ComboBox<Integer> heureFin;
+    private ComboBox<Integer> minDebut;
+    private ComboBox<Integer> minFin;
+    private ToggleGroup toggleNiveau;
     public GridPaneFormulaireReservation(Controleur controleur) {
 
         // this.setGridLinesVisible(true);
         this.setHgap(5);
         this.setVgap(5);
 
-        dateReservation = new Label(new DateCalendrier().toString());
+        selDate = new DateCalendrier();
+        dateReservation = new Label(selDate.toString());
         Label labelCours = new Label("_Cours");
         labelCours.setMnemonicParsing(true);
-        TextField textCours = new TextField();
+        textCours = new TextField();
         labelCours.setLabelFor(textCours);
         textCours.setPromptText("Entre le nom d'une réservation...");
         Platform.runLater(textCours::requestFocus); // Platform.runLater(() -> textCours.requestFocus());
 
         Label labelNiveau = new Label("Niveau");
-        ToggleGroup toggleNiveau = new ToggleGroup();
+        toggleNiveau = new ToggleGroup();
         RadioButton buttonDebutant = new RadioButton("_débutant");
         buttonDebutant.setMnemonicParsing(true);
         buttonDebutant.setSelected(true);
@@ -40,10 +48,10 @@ public class GridPaneFormulaireReservation extends GridPane {
         buttonExpert.setToggleGroup(toggleNiveau);
 
         Label labelHoraire = new Label("Horaire");
-        ComboBox<Integer> heureDebut = new ComboBox<>();
-        ComboBox<Integer> minDebut = new ComboBox<>();
-        ComboBox<Integer> heureFin = new ComboBox<>();
-        ComboBox<Integer> minFin = new ComboBox<>();
+        heureDebut = new ComboBox<>();
+        minDebut = new ComboBox<>();
+        heureFin = new ComboBox<>();
+        minFin = new ComboBox<>();
         for (int i = 0; i < 60; i += 15) {
             minDebut.getItems().add(i);
             minFin.getItems().add(i);
@@ -86,6 +94,32 @@ public class GridPaneFormulaireReservation extends GridPane {
     }
 
     public void updateDateSel(DateCalendrier parDate){
+        selDate = parDate;
         dateReservation.setText(parDate.toString());
     }
+
+    public DateCalendrier getSelDate(){
+        return selDate;
+    }
+
+    public String getTextCours(){
+        return textCours.getText();
+    }
+
+    public int getHeureDebut(){
+        return heureDebut.getValue();
+    }
+
+    public int getHeureFin(){
+        return heureFin.getValue();
+    }
+
+    public int getMinDebut(){
+        return minDebut.getValue();
+    }
+
+    public int getMinFin(){
+        return minFin.getValue();
+    }
+
 }
