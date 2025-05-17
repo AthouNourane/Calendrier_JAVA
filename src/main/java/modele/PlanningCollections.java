@@ -88,7 +88,7 @@ public class PlanningCollections {
         Iterator <Reservation> iterateur = chSetReservations.iterator();
         while (iterateur.hasNext()){
             Reservation resString = iterateur.next();
-            if (resString.getString().toLowerCase().contains(parString.toLowerCase())){
+            if (resString.getIntitule().toLowerCase().contains(parString.toLowerCase())){
                 setReservationsString.add(resString);
             }
         }
