@@ -36,7 +36,6 @@ public class PlageHoraire {
 
 
     public String toString () {
-        return chHoraireDebut + " à " + chHoraireFin +
-                ". La durée de cette plage est de " + duree() / 60 + "h" + duree() % 60;
+        return chHoraireDebut + " à " + chHoraireFin;
     }
 }
