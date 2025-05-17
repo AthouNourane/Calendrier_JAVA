@@ -35,6 +35,7 @@ public class Controleur implements EventHandler {
                 PlageHoraire plageReservation = new PlageHoraire(heureDebut, heureFin);
                 Reservation reservation = new Reservation(dateReservation, plageReservation, coursReservation, niveauReservation);
                 planning.ajout(reservation);
+                planningPane.updateSemaine(dateReservation);
             } catch (ExceptionHoraire e) {
                 System.out.println("Erreur sur les horaires !");
             } catch (ExceptionReservation e) {
