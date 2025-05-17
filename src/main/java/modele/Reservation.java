@@ -24,7 +24,7 @@ public class Reservation implements Comparable<Reservation>{
         return dateReservation;
     }
 
-    public PlageHoraire getPlageHoraire() {
+    public PlageHoraire getHoraire() {
         return plageHoraireReservation;
     }
 
