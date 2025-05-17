@@ -74,6 +74,7 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 if (date.isToday()) {
                     boutonDate.setId("today");
                 }
+                boutonDate.addEventFilter(ActionEvent.ACTION, controleur);
             }
 
             tilePane.setAccessibleText(MOIS[numMois - 1]);
@@ -98,6 +99,7 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
 
         alignement.setAlignment(Pos.CENTER);
         this.getChildren().add(alignement);
+
 
 
         ButtonSuiv.setOnAction(new EventHandler<ActionEvent>() {
