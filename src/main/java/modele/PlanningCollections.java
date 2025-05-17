@@ -53,6 +53,9 @@ public class PlanningCollections {
             }
         }
     }
+    public Map <Integer, Set<Reservation>> getChMapReservations(){
+        return chMapReservations;
+    }
 
     /**
      * Retourne l'ensemble des réservations du planning contenant la date passé en paramètre.
