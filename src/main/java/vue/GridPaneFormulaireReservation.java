@@ -2,19 +2,20 @@ package vue;
 
 import controleur.Controleur;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import modele.DateCalendrier;
 
 public class GridPaneFormulaireReservation extends GridPane {
+    private Label dateReservation;
     public GridPaneFormulaireReservation(Controleur controleur) {
 
         // this.setGridLinesVisible(true);
         this.setHgap(5);
         this.setVgap(5);
 
-        Label dateReservation = new Label(new DateCalendrier().toString());
-
+        dateReservation = new Label(new DateCalendrier().toString());
         Label labelCours = new Label("_Cours");
         labelCours.setMnemonicParsing(true);
         TextField textCours = new TextField();
@@ -56,6 +57,7 @@ public class GridPaneFormulaireReservation extends GridPane {
         boutonAnnuler.setMnemonicParsing(true);
         Button boutonEnregistrer = new Button("_Enregistrer");
         boutonEnregistrer.setMnemonicParsing(true);
+        boutonEnregistrer.addEventHandler(ActionEvent.ACTION, controleur);
 
 
         this.add(dateReservation, 1, 0, 5, 1);
@@ -81,5 +83,9 @@ public class GridPaneFormulaireReservation extends GridPane {
 
         this.add(boutonAnnuler, 3, 6);
         this.add(boutonEnregistrer, 4, 6);
+    }
+
+    public void updateDateSel(DateCalendrier parDate){
+        dateReservation.setText(parDate.toString());
     }
 }
