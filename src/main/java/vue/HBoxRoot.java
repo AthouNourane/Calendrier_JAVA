@@ -41,4 +41,8 @@ public class HBoxRoot extends HBox {
     public static GridPaneFormulaireReservation getReservationPane(){
         return reservationPane;
     }
+
+    public static VBoxAffichagePlanning getPlanningPane(){
+        return planningPane;
+    }
 }
