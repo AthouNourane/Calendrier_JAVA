@@ -88,16 +88,16 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
         while (!liste.get(dernierIndice).getAccessibleText().equals(MOIS[today.getMois() - 1])){
             liste.get(dernierIndice).toBack();
         }
-        HBox alignement = new HBox();
+
         this.getChildren().add(stackPaneMois);
 
+        HBox alignement = new HBox();
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
         // Alignement des boutons
-        alignement.getChildren().add(BoutonPremier);
-        alignement.getChildren().add(BoutonPrec);
-        alignement.getChildren().add(ButtonSuiv);
-        alignement.getChildren().add(BoutonDernier);
+        alignement.getChildren().addAll(BoutonPremier, BoutonPrec,
+                ButtonSuiv, BoutonDernier, spacer, new Label(MOIS[today.getMois()]));
 
-        alignement.setAlignment(Pos.CENTER);
         this.getChildren().add(alignement);
 
 
