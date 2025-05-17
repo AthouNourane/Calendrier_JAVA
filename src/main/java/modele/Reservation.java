@@ -24,8 +24,16 @@ public class Reservation implements Comparable<Reservation>{
         return dateReservation;
     }
 
-    public String getString() {
+    public PlageHoraire getPlageHoraire() {
+        return plageHoraireReservation;
+    }
+
+    public String getIntitule() {
         return intituleReservation;
+    }
+
+    public String getNiveau(){
+        return niveauReservation;
     }
 
     @Override
