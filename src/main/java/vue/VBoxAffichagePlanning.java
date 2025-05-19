@@ -18,6 +18,7 @@ public class VBoxAffichagePlanning extends VBox {
     public VBoxAffichagePlanning(){
         date = new DateCalendrier();
         semaine = new Label("Semaine " + date.getWeekOfYear());
+        semaine.getStyleClass().add("title");
 
         tableDesReservations = new TableView<>();
 

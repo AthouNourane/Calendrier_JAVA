@@ -24,7 +24,9 @@ public class GridPaneFormulaireReservation extends GridPane {
 
         selDate = new DateCalendrier();
         dateReservation = new Label(selDate.toString());
+        dateReservation.getStyleClass().add("title");
         Label labelCours = new Label("_Cours");
+        labelCours.getStyleClass().add("title");
         labelCours.setMnemonicParsing(true);
         textCours = new TextField();
         labelCours.setLabelFor(textCours);
@@ -32,6 +34,7 @@ public class GridPaneFormulaireReservation extends GridPane {
         Platform.runLater(textCours::requestFocus); // Platform.runLater(() -> textCours.requestFocus());
 
         Label labelNiveau = new Label("Niveau");
+        labelNiveau.getStyleClass().add("title");
         toggleNiveau = new ToggleGroup();
         RadioButton buttonDebutant = new RadioButton("_débutant");
         buttonDebutant.setMnemonicParsing(true);
@@ -48,6 +51,7 @@ public class GridPaneFormulaireReservation extends GridPane {
         buttonExpert.setToggleGroup(toggleNiveau);
 
         Label labelHoraire = new Label("Horaire");
+        labelHoraire.getStyleClass().add("title");
         heureDebut = new ComboBox<>();
         minDebut = new ComboBox<>();
         heureFin = new ComboBox<>();

@@ -72,6 +72,7 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 // les attributs id sont utilisés dans la feuille de style
                 if (date.getMois()!= monthCalendar.getMois()) {
                     boutonDate.setId("dateHorsMois");
+                    boutonDate.setDisable(true);
                 }
                 if (date.isToday()) {
                     boutonDate.setId("today");
@@ -97,15 +98,13 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         moisLabel = new Label(MOIS[today.getMois()-1]);
+        moisLabel.getStyleClass().add("title");
         // Alignement des boutons
         alignement.getChildren().addAll(BoutonPremier, BoutonPrec,
                 ButtonSuiv, BoutonDernier, spacer, moisLabel);
         moisLabel.setId("moisLabel");
 
-
         this.getChildren().add(alignement);
-
-
 
         ButtonSuiv.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
