@@ -110,6 +110,7 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
         ButtonSuiv.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
                 System.out.println("bouton suivant");
+                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
                 liste.getFirst().toFront();
             }
         });
@@ -118,6 +119,7 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
             public void handle(ActionEvent actionEvent) {
                 System.out.println("bouton précédent");
                 liste.getLast().toBack();
+                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
             }
         });
 
@@ -126,20 +128,23 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 while (liste.getLast() != dernierMois) {
                     liste.getLast().toBack();
                 }
+                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
             }
         });
 
 
         BoutonPremier.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
+                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
                 while (liste.getLast() != premierMois) {
                     liste.getFirst().toFront();
                 }
+
             }
         });
     }
 
-    public void updateMoisLabel(DateCalendrier parDate){
-        moisLabel.setText(MOIS[parDate.getMois()-1]);
+    public void updateMoisLabel(String parMois){
+        moisLabel.setText(parMois);
     }
 }
