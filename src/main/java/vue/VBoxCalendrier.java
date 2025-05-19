@@ -127,16 +127,16 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
             public void handle(ActionEvent actionEvent) {
                 while (liste.getLast() != dernierMois) {
                     liste.getLast().toBack();
+                    HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
                 }
-                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
+
             }
         });
 
-
         BoutonPremier.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent actionEvent) {
-                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
                 while (liste.getLast() != premierMois) {
+                    HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
                     liste.getFirst().toFront();
                 }
 
