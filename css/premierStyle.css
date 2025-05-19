@@ -1,5 +1,7 @@
 #opaque{
-    -fx-background-color: #e9f0f6;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-padding : 0 10 5 10;
 }
 
 #today {
@@ -32,8 +34,8 @@
     -fx-text-fill: white;
     -fx-border-color: black;
     -fx-border-width: 1px;
-    -fx-border-radius: 4px;
-    -fx-background-radius: 4px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
     -fx-cursor: hand;
 }
 
@@ -101,7 +103,6 @@
     -fx-max-width: 35px;
     -fx-max-height: 35px;
     -fx-alignment: center;
-    -fx-margin: 10px;
     -fx-cursor: hand;
 }
 
