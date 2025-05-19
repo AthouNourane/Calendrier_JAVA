@@ -65,10 +65,9 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 boutonDate.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        if (boutonDate.getId() != null) {
-                            if (!boutonDate.getId().equals("dateHorsMois")) {
-                                boutonDate.setId("selection");
-                            }
+                        boutonDate.setId("selection");
+                        if (date.isToday()) {
+                            boutonDate.setId("today");
                         }
                     }
                 });
