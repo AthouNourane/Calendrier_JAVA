@@ -15,7 +15,7 @@ import modele.DateCalendrier;
 import java.util.List;
 
 public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
-
+    private Label moisLabel;
     public VBoxCalendrier(Controleur controleur) {
         Button BoutonPrec = new Button("<");
         Button ButtonSuiv = new Button(">");
@@ -62,9 +62,11 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 boutonDate.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        boutonDate.setId("selection");
-                        System.out.println(boutonDate.getUserData());
-                        System.out.println(boutonDate.getId());
+                        if (boutonDate.getId() != null) {
+                            if (!boutonDate.getId().equals("dateHorsMois")) {
+                                boutonDate.setId("selection");
+                            }
+                        }
                     }
                 });
                 // les attributs id sont utilisés dans la feuille de style
@@ -73,9 +75,6 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 }
                 if (date.isToday()) {
                     boutonDate.setId("today");
-                }
-                if (date.estDimanche()) {
-                    boutonDate.getStyleClass().add("sunday");
                 }
                 boutonDate.addEventFilter(ActionEvent.ACTION, controleur);
             }
@@ -97,7 +96,7 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
         HBox alignement = new HBox();
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        Label moisLabel = new Label(MOIS[today.getMois()]);
+        moisLabel = new Label(MOIS[today.getMois()-1]);
         // Alignement des boutons
         alignement.getChildren().addAll(BoutonPremier, BoutonPrec,
                 ButtonSuiv, BoutonDernier, spacer, moisLabel);
@@ -138,6 +137,9 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 }
             }
         });
+    }
 
+    public void updateMoisLabel(DateCalendrier parDate){
+        moisLabel.setText(MOIS[parDate.getMois()-1]);
     }
 }
