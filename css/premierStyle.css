@@ -122,20 +122,53 @@
 }
 
 .label {
-    -fx-text-fill: #2c3e50;
-    -fx-font-size: 14px;
-    -fx-font-weight: normal;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
 }
 
 .label.title {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #154360;
-    -fx-padding: 5px 0 10px 0;
+    -fx-font-style: none;
 }
 
-.label.secondary {
-    -fx-font-size: 12px;
-    -fx-text-fill: #5d6d7e;
-    -fx-font-style: italic;
+.table-view .column-header-background {
+    -fx-background-color: #aed6f1;
+    -fx-border-color: #5dade2;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-size: 30px;
+    -fx-border-color: transparent;
+    -fx-background-color: #d6eaf8;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 8px;
+}
+
+.table-view .column-header:hover {
+    -fx-background-color: #a9cce3;
+}
+
+.radio-button {
+    -fx-text-fill: #066fb5;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-padding: 6px 10px;
+    -fx-cursor: hand;
+}
+
+.radio-button:selected {
+    -fx-text-fill: #154360;
+    -fx-font-weight: bold;
 }
