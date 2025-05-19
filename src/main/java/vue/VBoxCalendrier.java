@@ -3,6 +3,7 @@ package vue;
 import controleur.Controleur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -35,6 +36,8 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
             // 1 conteneur tilePane par mois
             TilePane tilePane = new TilePane(Orientation.HORIZONTAL);
             tilePane.setPrefColumns(7);
+            tilePane.setHgap(5); // Espace horizontal entre les éléments
+            tilePane.setVgap(5); // Espace vertical entre les éléments
 
             // 1 ligne pour lu, ma, ... et 4, 5, 6 lignes pour les boutons Date
             tilePane.setPrefRows(monthCalendar.getDates().size() / 7 + 1);
@@ -99,6 +102,10 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
         HBox.setHgrow(spacer, Priority.ALWAYS);
         moisLabel = new Label(MOIS[today.getMois()-1]);
         moisLabel.getStyleClass().add("title");
+        HBox.setMargin(BoutonPremier, new Insets(5, 2.5, 0, 0));
+        HBox.setMargin(BoutonDernier, new Insets(5, 0, 0, 2.5));
+        HBox.setMargin(BoutonPrec, new Insets(5, 2.5, 0, 2.5));
+        HBox.setMargin(ButtonSuiv, new Insets(5, 2.5, 0, 2.5));
         // Alignement des boutons
         alignement.getChildren().addAll(BoutonPremier, BoutonPrec,
                 ButtonSuiv, BoutonDernier, spacer, moisLabel);
