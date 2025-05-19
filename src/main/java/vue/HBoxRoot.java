@@ -12,7 +12,7 @@ public class HBoxRoot extends HBox {
     private static VBoxAffichagePlanning planningPane;
 
     public HBoxRoot(){
-        super(30);
+        super(10);
 
         planning = new PlanningCollections();
         controleur = new Controleur();
