@@ -56,9 +56,6 @@ public int getWeekOfYear() {
 }
 
 
-public boolean estDimanche() {
-    return jourSemaine == 7;
-}
  public DateCalendrier dateDuLendemain ()   {
 	Date dateLendemain =  super.dateDuLendemain();
 	return new DateCalendrier (dateLendemain.chJour,dateLendemain.chMois,dateLendemain.chAnnee); 
