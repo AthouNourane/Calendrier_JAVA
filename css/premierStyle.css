@@ -172,3 +172,34 @@
     -fx-text-fill: #154360;
     -fx-font-weight: bold;
 }
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #3498db;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+    -fx-padding: 4 8;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-cursor: hand;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+.combo-box .combo-box-popup .list-view {
+    -fx-background-color: #ecf6fb;
+    -fx-border-color: #3498db;
+}
+
+.combo-box .combo-box-popup .list-view .list-cell {
+    -fx-padding: 6 10;
+    -fx-text-fill: #2c3e50;
+    -fx-background-color: transparent;
+}
+
+.combo-box .combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #d6eaf8;
+    -fx-text-fill: #154360;
+}
