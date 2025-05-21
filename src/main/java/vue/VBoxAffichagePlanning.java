@@ -40,6 +40,11 @@ public class VBoxAffichagePlanning extends VBox {
             table.setResizable(false);
         }
         dateColumn.setPrefWidth(175);
+
+        horaireColumn.setSortType(TableColumn.SortType.DESCENDING); // ou DESCENDING
+        tableDesReservations.getSortOrder().add(horaireColumn); // Ajoute la colonne à la liste de tri
+        tableDesReservations.sort(); // Applique le tri immédiatement
+
         this.getChildren().add(semaine);
         this.getChildren().add(tableDesReservations);
     }
@@ -52,6 +57,7 @@ public class VBoxAffichagePlanning extends VBox {
             for (Reservation reservation : planning.getChMapReservations().get(parDate.getWeekOfYear())) {
                 tableDesReservations.getItems().add(reservation);
             }
+            tableDesReservations.sort();
         }
         date = parDate;
         semaine.setText("Semaine " + parDate.getWeekOfYear());
