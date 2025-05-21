@@ -41,7 +41,6 @@ public class Controleur implements EventHandler {
             } catch (ExceptionPlanning e) {
                 System.out.println("Erreur lors de l'ajout dans le planning !");
             }
-            System.out.println(planning);
         }
     }
 }
