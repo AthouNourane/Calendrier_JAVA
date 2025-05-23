@@ -3,6 +3,8 @@ package vue;
 import controleur.Controleur;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import modele.DateCalendrier;
@@ -82,22 +84,24 @@ public class GridPaneFormulaireReservation extends GridPane {
         this.add(textCours, 1, 1, 5, 1);
 
         this.add(labelNiveau, 0, 2);
-        this.add(buttonDebutant, 1, 2);
-        this.add(buttonMoyen, 2, 2);
-        this.add(buttonAvance,1, 3);
-        this.add(buttonExpert, 2, 3);
+        this.add(buttonDebutant, 2, 2);
+        this.add(buttonMoyen, 4, 2);
+        this.add(buttonAvance,2, 3);
+        this.add(buttonExpert, 4, 3);
 
         this.add(labelHoraire, 0, 4);
         this.add(new Label("de"), 1, 4);
         this.add(heureDebut, 2, 4);
+        GridPane.setHalignment(heureDebut, HPos.CENTER);
         this.add(new Label("h"), 3, 4);
         this.add(minDebut, 4, 4);
         this.add(new Label("à"), 1, 5);
         this.add(heureFin, 2, 5);
+        GridPane.setHalignment(heureFin, HPos.CENTER);
         this.add(new Label("h"), 3, 5);
         this.add(minFin, 4, 5);
-
-        this.add(boutonAnnuler, 3, 6);
+        this.add(boutonAnnuler, 2, 6);
+        GridPane.setHalignment(boutonAnnuler, HPos.RIGHT);
         this.add(boutonEnregistrer, 4, 6);
     }
 
