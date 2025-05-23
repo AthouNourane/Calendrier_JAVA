@@ -11,7 +11,7 @@ import java.util.Objects;
 public class deuxiemeApplication extends Application {
     public void start(Stage stage)  {
         HBox root = new HBoxRoot();
-        Scene scene = new Scene(root, 1250, 500);
+        Scene scene = new Scene(root, 1100, 500);
 
         Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/agenda_logo.png")));
         stage.getIcons().add(icon);
