@@ -57,6 +57,10 @@ public class PlanningCollections {
         return chMapReservations;
     }
 
+    public void setChMapReservations(Map <Integer, Set<Reservation>> parMapReservations){
+        new DataBase().chargerReservationsDepuisBD(parMapReservations);
+    }
+
     /**
      * Retourne l'ensemble des réservations du planning contenant la date passé en paramètre.
      *

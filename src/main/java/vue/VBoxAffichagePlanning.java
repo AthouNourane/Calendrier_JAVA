@@ -46,6 +46,7 @@ public class VBoxAffichagePlanning extends VBox {
         tableDesReservations.getSortOrder().add(dateColumn);
         tableDesReservations.getSortOrder().add(horaireColumn); // Ajoute la colonne à la liste de tri
         tableDesReservations.sort(); // Applique le tri immédiatement
+        this.updateSemaine(date);
 
         this.getChildren().add(semaine);
         this.getChildren().add(tableDesReservations);

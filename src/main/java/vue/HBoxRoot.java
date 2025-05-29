@@ -15,6 +15,8 @@ public class HBoxRoot extends HBox {
         super(10);
 
         planning = new PlanningCollections();
+        planning.setChMapReservations(planning.getChMapReservations());
+        System.out.println(planning);
         controleur = new Controleur();
         calendrierPane = new VBoxCalendrier(controleur);
         reservationPane = new GridPaneFormulaireReservation(controleur);
