@@ -18,10 +18,10 @@ public class DataBase {
     }
 
     public void insererReservation(LocalDate date, String cours, String niveau,
-                                   LocalDateTime debut, LocalDateTime fin) {
+                                   LocalDateTime debut, LocalDateTime fin, int semaine) {
         String sql = """
-        INSERT INTO "Reservation" ("Date", "Cours", "Niveau", "Heure")
-        VALUES (?, ?, ?, tsrange(?, ?, '[]'))
+        INSERT INTO "Reservation" ("Date", "Cours", "Niveau", "Heure", "Semaine")
+        VALUES (?, ?, ?, tsrange(?, ?, '[]'), ?)
     """;
 
         try (Connection conn = DataBase.connect();
@@ -32,6 +32,7 @@ public class DataBase {
             pstmt.setString(3, niveau);
             pstmt.setTimestamp(4, Timestamp.valueOf(debut));
             pstmt.setTimestamp(5, Timestamp.valueOf(fin));
+            pstmt.setInt(6, semaine);
 
             pstmt.executeUpdate();
 

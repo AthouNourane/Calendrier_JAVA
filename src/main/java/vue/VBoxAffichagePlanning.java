@@ -68,16 +68,16 @@ public class VBoxAffichagePlanning extends VBox {
     public void ajoutTable(DateCalendrier parDate, String parNiveau, String parCours, PlageHoraire parPlageHoraire){
         DataBase dataBase = new DataBase();
 
-        LocalDate date = LocalDate.of(parDate.getAnnee(), parDate.getMois(), parDate.getJour());
+        LocalDate dateTable = LocalDate.of(parDate.getAnnee(), parDate.getMois(), parDate.getJour());
 
         Horaire heureDebut = parPlageHoraire.getChHoraireDebut();
         LocalTime timeDebut = LocalTime.of(heureDebut.getHeure(), heureDebut.getQuartHeure());
-        LocalDateTime debut = LocalDateTime.of(date, timeDebut);
+        LocalDateTime debut = LocalDateTime.of(dateTable, timeDebut);
 
         Horaire heureFin = parPlageHoraire.getChHoraireFin();
         LocalTime timeFin = LocalTime.of(heureFin.getHeure(), heureFin.getQuartHeure());
-        LocalDateTime fin = LocalDateTime.of(date, timeFin);
+        LocalDateTime fin = LocalDateTime.of(dateTable, timeFin);
 
-        dataBase.insererReservation(date, parCours, parNiveau, debut, fin);
+        dataBase.insererReservation(dateTable, parCours, parNiveau, debut, fin, date.getWeekOfYear());
     }
 }
