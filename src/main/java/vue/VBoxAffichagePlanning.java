@@ -1,5 +1,6 @@
 package vue;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,11 +46,15 @@ public class VBoxAffichagePlanning extends VBox {
         horaireColumn.setSortType(TableColumn.SortType.ASCENDING);
         tableDesReservations.getSortOrder().add(dateColumn);
         tableDesReservations.getSortOrder().add(horaireColumn); // Ajoute la colonne à la liste de tri
-        tableDesReservations.sort(); // Applique le tri immédiatement
         this.updateSemaine(date);
+        tableDesReservations.sort(); // Applique le tri immédiatement
 
-        this.getChildren().add(semaine);
-        this.getChildren().add(tableDesReservations);
+
+        Button boutonSupprimer = new Button("Supprimer la réservation");
+        boutonSupprimer.setUserData("Suppression");
+        boutonSupprimer.setDisable(true);
+
+        this.getChildren().addAll(semaine, tableDesReservations, boutonSupprimer);
     }
 
     public void updateSemaine(DateCalendrier parDate){
