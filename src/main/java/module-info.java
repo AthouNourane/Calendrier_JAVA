@@ -3,6 +3,7 @@ module com.example.deuxiemeprojet {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.sql;
 
     opens com.example.deuxiemeprojet to javafx.fxml;
     exports com.example.deuxiemeprojet;

@@ -34,6 +34,7 @@ public class Controleur implements EventHandler {
                 Reservation reservation = new Reservation(dateReservation, plageReservation, coursReservation, niveauReservation);
                 planning.ajout(reservation);
                 planningPane.updateSemaine(dateReservation);
+                planningPane.ajoutTable(dateReservation, niveauReservation, coursReservation, plageReservation);
             } catch (ExceptionHoraire e) {
                 System.out.println("Erreur sur les horaires !");
             } catch (ExceptionReservation e) {
