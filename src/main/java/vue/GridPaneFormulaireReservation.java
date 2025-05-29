@@ -9,14 +9,14 @@ import javafx.scene.layout.GridPane;
 import modele.DateCalendrier;
 
 public class GridPaneFormulaireReservation extends GridPane {
-    private Label dateReservation;
-    private DateCalendrier selDate;
-    private TextField textCours;
-    private ComboBox<Integer> heureDebut;
-    private ComboBox<Integer> heureFin;
-    private ComboBox<Integer> minDebut;
-    private ComboBox<Integer> minFin;
-    private ToggleGroup toggleNiveau;
+    private static Label dateReservation;
+    private static DateCalendrier selDate;
+    private static TextField textCours;
+    private static ComboBox<Integer> heureDebut;
+    private static ComboBox<Integer> heureFin;
+    private static ComboBox<Integer> minDebut;
+    private static ComboBox<Integer> minFin;
+    private static ToggleGroup toggleNiveau;
     public GridPaneFormulaireReservation(Controleur controleur) {
 
         // this.setGridLinesVisible(true);

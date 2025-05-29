@@ -1,7 +1,5 @@
 package vue;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -71,34 +69,26 @@ public class VBoxRootMois extends VBox implements ConstantesCalendrier {
         this.getChildren().add(alignement);
 
 
-        ButtonSuiv.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                System.out.println("bouton suivant");
-                liste.getFirst().toFront();
-            }
+        ButtonSuiv.setOnAction(_ -> {
+            System.out.println("bouton suivant");
+            liste.getFirst().toFront();
         });
 
-        BoutonPrec.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                System.out.println("bouton précédent");
+        BoutonPrec.setOnAction(_ -> {
+            System.out.println("bouton précédent");
+            liste.getLast().toBack();
+        });
+
+        BoutonDernier.setOnAction(_ -> {
+            while (liste.getLast() != dernierMois) {
                 liste.getLast().toBack();
             }
         });
 
-        BoutonDernier.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                while (liste.getLast() != dernierMois) {
-                    liste.getLast().toBack();
-                }
-            }
-        });
 
-
-        BoutonPremier.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                while (liste.getLast() != premierMois) {
-                    liste.getFirst().toFront();
-                }
+        BoutonPremier.setOnAction(_ -> {
+            while (liste.getLast() != premierMois) {
+                liste.getFirst().toFront();
             }
         });
 

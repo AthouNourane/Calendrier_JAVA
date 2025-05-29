@@ -2,10 +2,8 @@ package vue;
 
 import controleur.Controleur;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -16,7 +14,7 @@ import modele.DateCalendrier;
 import java.util.List;
 
 public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
-    private Label moisLabel;
+    private static Label moisLabel;
     public VBoxCalendrier(Controleur controleur) {
         Button BoutonPrec = new Button("<");
         Button ButtonSuiv = new Button(">");
@@ -62,13 +60,10 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
                 // associe une date au toggleBouton, utilisé par la suite
 
                 boutonDate.setUserData(date);
-                boutonDate.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        boutonDate.setId("selection");
-                        if (date.isToday()) {
-                            boutonDate.setId("today");
-                        }
+                boutonDate.setOnAction(_ -> {
+                    boutonDate.setId("selection");
+                    if (date.isToday()) {
+                        boutonDate.setId("today");
                     }
                 });
                 // les attributs id sont utilisés dans la feuille de style
@@ -112,38 +107,30 @@ public class VBoxCalendrier extends VBox implements ConstantesCalendrier {
 
         this.getChildren().add(alignement);
 
-        ButtonSuiv.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
-                liste.getFirst().toFront();
-            }
+        ButtonSuiv.setOnAction(_ -> {
+            HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
+            liste.getFirst().toFront();
         });
 
-        BoutonPrec.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
+        BoutonPrec.setOnAction(_ -> {
+            liste.getLast().toBack();
+            HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
+        });
+
+        BoutonDernier.setOnAction(_ -> {
+            while (liste.getLast() != dernierMois) {
                 liste.getLast().toBack();
                 HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
             }
+
         });
 
-        BoutonDernier.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                while (liste.getLast() != dernierMois) {
-                    liste.getLast().toBack();
-                    HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getLast().getAccessibleText());
-                }
-
+        BoutonPremier.setOnAction(_ -> {
+            while (liste.getLast() != premierMois) {
+                HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
+                liste.getFirst().toFront();
             }
-        });
 
-        BoutonPremier.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent actionEvent) {
-                while (liste.getLast() != premierMois) {
-                    HBoxRoot.getCalendrierPane().updateMoisLabel(liste.getFirst().getAccessibleText());
-                    liste.getFirst().toFront();
-                }
-
-            }
         });
     }
 

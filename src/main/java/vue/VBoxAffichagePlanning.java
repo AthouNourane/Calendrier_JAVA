@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class VBoxAffichagePlanning extends VBox {
-    private Label semaine;
-    private TableView<Reservation> tableDesReservations;
-    private PlanningCollections planning = HBoxRoot.getPlanning();
+    private static Label semaine;
+    private static TableView<Reservation> tableDesReservations;
+    private final PlanningCollections planning = HBoxRoot.getPlanning();
     private DateCalendrier date;
     public VBoxAffichagePlanning(){
         date = new DateCalendrier();

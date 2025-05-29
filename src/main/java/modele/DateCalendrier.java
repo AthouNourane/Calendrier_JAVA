@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class DateCalendrier extends Date implements ConstantesCalendrier, Comparable <Date>  {
   
   private int jourSemaine;
-  private int weekOfYear ;
+  private final int weekOfYear ;
    
 /** retourne la date d'aujourd'hui
 *

@@ -1,10 +1,10 @@
 package modele;
 
 public class Reservation implements Comparable<Reservation>{
-    private Date dateReservation;
-    private PlageHoraire plageHoraireReservation;
-    private String intituleReservation;
-    private String niveauReservation;
+    private final Date dateReservation;
+    private final PlageHoraire plageHoraireReservation;
+    private final String intituleReservation;
+    private final String niveauReservation;
 
     public Reservation (Date parDate, PlageHoraire parPlageHoraire, String parIntitule, String parNiveau) throws ExceptionReservation {
         if (parIntitule == null)
@@ -44,7 +44,7 @@ public class Reservation implements Comparable<Reservation>{
     }
 
     public boolean estValide(){
-        return dateReservation.estValide() && plageHoraireReservation.estValide() && intituleReservation != null
-                && !intituleReservation.isEmpty() && niveauReservation != null && !niveauReservation.isEmpty();
+        return dateReservation.estValide() && plageHoraireReservation.estValide() &&
+                !intituleReservation.isEmpty() && niveauReservation != null && !niveauReservation.isEmpty();
     }
 }

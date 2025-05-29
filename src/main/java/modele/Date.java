@@ -43,16 +43,15 @@ public boolean estValide () {
 
   
 protected static int dernierJourDuMois (int parMois, int parAnnee) {
-	switch (parMois) {
-		 case 2 : if (Date.estBissextile (parAnnee))
-		 			  return 29 ; 
-				  return 28 ;  
-		 case 4 : 	 
-		 case 6 : 	 
-		 case 9 : 	 
-		 case 11 : return 30 ;
-		 default : return 31 ;
-	}   
+    return switch (parMois) {
+        case 2 -> {
+            if (Date.estBissextile(parAnnee))
+                yield 29;
+            yield 28;
+        }
+        case 4, 6, 9, 11 -> 30;
+        default -> 31;
+    };
   }  
   
   private static boolean estBissextile(int parAnnee) {

@@ -3,9 +3,9 @@ package modele;
 import java.util.*;
 
 public class PlanningCollections {
-    private List <Reservation> chListReservations;
-    private Set <Reservation> chSetReservations;
-    private Map <Integer, Set<Reservation>> chMapReservations;
+    private static List <Reservation> chListReservations;
+    private static Set <Reservation> chSetReservations;
+    private static Map <Integer, Set<Reservation>> chMapReservations;
     public PlanningCollections(){
         chListReservations = new ArrayList<Reservation>();
         chSetReservations = new TreeSet<Reservation>();
@@ -15,7 +15,7 @@ public class PlanningCollections {
     /**
      * ajout de parReservation (classe Reservation) à la liste des réservations et au set des réservations
      *
-     * @param parReservation
+     * @param parReservation Reservation à ajouter
      * @throws ExceptionPlanning
      *
      * leve ExcpetionPlanning quand parReservation n'est pas compatible avec une reservation de planning
@@ -24,9 +24,7 @@ public class PlanningCollections {
     public void ajout (Reservation parReservation) throws ExceptionPlanning{
         // ajout à la liste
         // parcours avec itérateur
-        Iterator<Reservation> iterateur = chListReservations.iterator();
-        while (iterateur.hasNext()){
-            Reservation reserve = iterateur.next();
+        for (Reservation reserve : chListReservations) {
             if (parReservation.compareTo(reserve) == 0)
                 throw new ExceptionPlanning(2);
         }
@@ -64,15 +62,13 @@ public class PlanningCollections {
     /**
      * Retourne l'ensemble des réservations du planning contenant la date passé en paramètre.
      *
-     * @param parDate
+     * @param parDate Date des réservations que l'on cherche
      * @return TreeSet <Reservation>
      */
     public TreeSet <Reservation> getReservations (DateCalendrier parDate){
         TreeSet <Reservation> setReservationsJour = new TreeSet<Reservation>();
-        Iterator <Reservation> iterateur = chSetReservations.iterator();
-        while (iterateur.hasNext()){
-            Reservation resJour = iterateur.next();
-            if (resJour.getDate().compareTo(parDate) == 0){
+        for (Reservation resJour : chSetReservations) {
+            if (resJour.getDate().compareTo(parDate) == 0) {
                 setReservationsJour.add(resJour);
             }
         }
@@ -84,15 +80,13 @@ public class PlanningCollections {
     /**
      * Retourne l'ensemble des réservations du planning contenant l'intitulé passé en paramètre.
      *
-     * @param parString
+     * @param parString Intitulé des réservations que l'on recherche
      * @return TreeSet <Reservation>
      */
     public TreeSet <Reservation> getReservations (String parString){
         TreeSet <Reservation> setReservationsString = new TreeSet<Reservation>();
-        Iterator <Reservation> iterateur = chSetReservations.iterator();
-        while (iterateur.hasNext()){
-            Reservation resString = iterateur.next();
-            if (resString.getIntitule().toLowerCase().contains(parString.toLowerCase())){
+        for (Reservation resString : chSetReservations) {
+            if (resString.getIntitule().toLowerCase().contains(parString.toLowerCase())) {
                 setReservationsString.add(resString);
             }
         }

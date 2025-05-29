@@ -8,15 +8,15 @@ public class CalendrierDuMois {
 
     /**  Field Description of mois : le mois du calendrier */
 
-    private int mois;
+    private final int mois;
 
     /** Field Description annee : l'annee du calendrier */
-    private int annee;
+    private final int annee;
 
     /**
      * treeSetDate : la collection des dates du mois en cours
      */
-    private Collection <DateCalendrier> treeSetDate;
+    private static Collection <DateCalendrier> treeSetDate;
 
     public CalendrierDuMois ( int mois, int annee) {
         this.mois = mois;
@@ -42,7 +42,7 @@ public class CalendrierDuMois {
 
     /**
      * accesseur sur le champ collection dates
-     * @return
+     * @return un treeset des dates du mois en cours
      */
     public Collection <DateCalendrier> getDates() {
         return treeSetDate;

@@ -43,7 +43,6 @@ public class DataBase {
     }
 
     public void chargerReservationsDepuisBD(Map<Integer, Set<Reservation>> treeMap) {
-        TreeMap<Integer, Set<Reservation>> mapReservations = new TreeMap<>();
 
         String sql = """
         SELECT "Date", "Cours", "Niveau", lower("Heure"), upper("Heure"), "Semaine"

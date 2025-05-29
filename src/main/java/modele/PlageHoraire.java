@@ -2,8 +2,8 @@ package modele;
 
 public class PlageHoraire implements Comparable<PlageHoraire>{
     private static final int DUREE_MINIMUM = 30;
-    private Horaire chHoraireDebut;
-    private Horaire chHoraireFin;
+    private final Horaire chHoraireDebut;
+    private final Horaire chHoraireFin;
 
     public PlageHoraire (Horaire parHoraireDebut, Horaire parHoraireFin) throws ExceptionHoraire {
         if (parHoraireDebut.toMinutes() > parHoraireFin.toMinutes())
