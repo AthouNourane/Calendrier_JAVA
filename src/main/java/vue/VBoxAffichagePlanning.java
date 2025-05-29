@@ -5,10 +5,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import modele.DateCalendrier;
-import modele.PlageHoraire;
-import modele.PlanningCollections;
-import modele.Reservation;
+import modele.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class VBoxAffichagePlanning extends VBox {
     private Label semaine;
@@ -62,5 +63,21 @@ public class VBoxAffichagePlanning extends VBox {
         }
         date = parDate;
         semaine.setText("Semaine " + parDate.getWeekOfYear());
+    }
+
+    public void ajoutTable(DateCalendrier parDate, String parNiveau, String parCours, PlageHoraire parPlageHoraire){
+        DataBase dataBase = new DataBase();
+
+        LocalDate date = LocalDate.of(parDate.getAnnee(), parDate.getMois(), parDate.getJour());
+
+        Horaire heureDebut = parPlageHoraire.getChHoraireDebut();
+        LocalTime timeDebut = LocalTime.of(heureDebut.getHeure(), heureDebut.getQuartHeure());
+        LocalDateTime debut = LocalDateTime.of(date, timeDebut);
+
+        Horaire heureFin = parPlageHoraire.getChHoraireFin();
+        LocalTime timeFin = LocalTime.of(heureFin.getHeure(), heureFin.getQuartHeure());
+        LocalDateTime fin = LocalDateTime.of(date, timeFin);
+
+        dataBase.insererReservation(date, parCours, parNiveau, debut, fin);
     }
 }
