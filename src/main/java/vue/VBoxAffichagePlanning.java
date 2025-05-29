@@ -40,8 +40,9 @@ public class VBoxAffichagePlanning extends VBox {
             table.setResizable(false);
         }
         dateColumn.setPrefWidth(175);
-
-        horaireColumn.setSortType(TableColumn.SortType.DESCENDING); // ou DESCENDING
+        dateColumn.setSortType(TableColumn.SortType.ASCENDING);
+        horaireColumn.setSortType(TableColumn.SortType.ASCENDING);
+        tableDesReservations.getSortOrder().add(dateColumn);
         tableDesReservations.getSortOrder().add(horaireColumn); // Ajoute la colonne à la liste de tri
         tableDesReservations.sort(); // Applique le tri immédiatement
 
