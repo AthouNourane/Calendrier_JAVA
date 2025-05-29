@@ -12,6 +12,14 @@ public class PlageHoraire implements Comparable<PlageHoraire>{
         chHoraireFin = parHoraireFin;
     }
 
+    public Horaire getChHoraireDebut(){
+        return chHoraireDebut;
+    }
+
+    public Horaire getChHoraireFin(){
+        return chHoraireFin;
+    }
+
     /**
      * Renvoie true lorsque la plage horaire (this) est valide.
      * @return boolean
