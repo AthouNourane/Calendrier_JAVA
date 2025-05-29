@@ -71,8 +71,12 @@ public class GridPaneFormulaireReservation extends GridPane {
         }
 
         Button boutonAnnuler = new Button("_Annuler");
+        boutonAnnuler.setUserData("Annuler");
+        boutonAnnuler.setOnAction(_ -> resetFormulaire());
         boutonAnnuler.setMnemonicParsing(true);
+        boutonAnnuler.addEventHandler(ActionEvent.ACTION, controleur);
         Button boutonEnregistrer = new Button("_Enregistrer");
+        boutonEnregistrer.setUserData("Enregistrer");
         boutonEnregistrer.setMnemonicParsing(true);
         boutonEnregistrer.addEventHandler(ActionEvent.ACTION, controleur);
 
@@ -136,5 +140,14 @@ public class GridPaneFormulaireReservation extends GridPane {
     public String getNiveau(){
         RadioButton selNiveau = (RadioButton) toggleNiveau.getSelectedToggle();
         return selNiveau.getText().substring(1);
+    }
+
+    public void resetFormulaire(){
+        textCours.clear();
+        toggleNiveau.selectToggle(toggleNiveau.getToggles().getFirst());
+        heureDebut.setValue(7);
+        minDebut.setValue(0);
+        heureFin.setValue(9);
+        minFin.setValue(0);
     }
 }
