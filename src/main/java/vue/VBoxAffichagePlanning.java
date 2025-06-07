@@ -1,9 +1,8 @@
 package vue;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import controleur.Controleur;
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import modele.*;
@@ -17,7 +16,10 @@ public class VBoxAffichagePlanning extends VBox {
     private static TableView<Reservation> tableDesReservations;
     private final PlanningCollections planning = HBoxRoot.getPlanning();
     private DateCalendrier date;
-    public VBoxAffichagePlanning(){
+    private Button boutonSupprimer;
+    private TableRow<Reservation> selectedRow;
+    public VBoxAffichagePlanning(Controleur controleur){
+        super(10);
         date = new DateCalendrier();
         semaine = new Label("Semaine " + date.getWeekOfYear());
         semaine.getStyleClass().add("title");
@@ -50,15 +52,29 @@ public class VBoxAffichagePlanning extends VBox {
         tableDesReservations.sort(); // Applique le tri immédiatement
 
 
-        Button boutonSupprimer = new Button("Supprimer la réservation");
+        boutonSupprimer = new Button("Supprimer la réservation");
         boutonSupprimer.setUserData("Suppression");
         boutonSupprimer.setDisable(true);
+        tableDesReservations.setRowFactory(_ -> {
+            TableRow<Reservation> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    boutonSupprimer.setDisable(false);
+                    selectedRow = row;
+                }
+            });
+            return row;
+        });
+        boutonSupprimer.addEventHandler(ActionEvent.ACTION, controleur);
 
         this.getChildren().addAll(semaine, tableDesReservations, boutonSupprimer);
     }
 
     public void updateSemaine(DateCalendrier parDate){
         tableDesReservations.getItems().clear();
+        if (boutonSupprimer != null){
+        boutonSupprimer.setDisable(true);
+        }
         if (planning.getChMapReservations().containsKey(parDate.getWeekOfYear())) {
             System.out.println(parDate.getWeekOfYear());
             System.out.println(planning);
@@ -86,4 +102,25 @@ public class VBoxAffichagePlanning extends VBox {
 
         dataBase.insererReservation(dateTable, parCours, parNiveau, debut, fin, date.getWeekOfYear());
     }
+
+    public void supprimerTable(DateCalendrier parDate, PlageHoraire parPlageHoraire){
+        DataBase dataBase = new DataBase();
+
+        LocalDate dateTable = LocalDate.of(parDate.getAnnee(), parDate.getMois(), parDate.getJour());
+
+        Horaire heureDebut = parPlageHoraire.getChHoraireDebut();
+        LocalTime timeDebut = LocalTime.of(heureDebut.getHeure(), heureDebut.getQuartHeure());
+        LocalDateTime debut = LocalDateTime.of(dateTable, timeDebut);
+
+        Horaire heureFin = parPlageHoraire.getChHoraireFin();
+        LocalTime timeFin = LocalTime.of(heureFin.getHeure(), heureFin.getQuartHeure());
+        LocalDateTime fin = LocalDateTime.of(dateTable, timeFin);
+
+        dataBase.supprimerReservation(dateTable, debut, fin);
+    }
+
+    public Reservation selectedReservation(){
+        return selectedRow.getItem();
+    }
+
 }

@@ -20,7 +20,7 @@ public class HBoxRoot extends HBox {
         controleur = new Controleur();
         calendrierPane = new VBoxCalendrier(controleur);
         reservationPane = new GridPaneFormulaireReservation(controleur);
-        planningPane = new VBoxAffichagePlanning();
+        planningPane = new VBoxAffichagePlanning(controleur);
 
 
         this.getChildren().add(calendrierPane);
