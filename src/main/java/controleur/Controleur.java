@@ -7,6 +7,8 @@ import javafx.scene.control.ToggleButton;
 import modele.*;
 import vue.*;
 
+import java.util.Set;
+
 public class Controleur implements EventHandler {
 
     @Override
@@ -24,8 +26,8 @@ public class Controleur implements EventHandler {
         }
         // la source de event est un bouton
         if (event.getSource() instanceof Button bouton) {
+            DateCalendrier dateReservation = reservationPane.getSelDate();
             if (bouton.getUserData().equals("Enregistrer")) {
-                DateCalendrier dateReservation = reservationPane.getSelDate();
                 String coursReservation = reservationPane.getTextCours();
                 String niveauReservation = reservationPane.getNiveau();
                 Horaire heureDebut = new Horaire(reservationPane.getHeureDebut(), reservationPane.getMinDebut());
@@ -43,6 +45,19 @@ public class Controleur implements EventHandler {
                 } catch (ExceptionPlanning e) {
                     System.out.println("Erreur lors de l'ajout dans le planning !");
                 }
+            }
+            if (bouton.getUserData().equals("Suppression")) {
+                Reservation selectedReservation = planningPane.selectedReservation();
+                PlageHoraire plageHoraire = selectedReservation.getHoraire();
+                DateCalendrier dateSupp = (DateCalendrier) selectedReservation.getDate();
+                planningPane.supprimerTable(dateSupp, plageHoraire);
+                Set<Reservation> reservationSet = planning.getChMapReservations().get(dateSupp.getWeekOfYear());
+                reservationSet.remove(selectedReservation);
+                if (reservationSet.isEmpty()){
+                    planning.getChMapReservations().remove(dateSupp.getWeekOfYear());
+                }
+                planningPane.updateSemaine(dateReservation);
+                System.out.println("Réservation supprimée !");
             }
         }
     }
