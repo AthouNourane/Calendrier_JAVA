@@ -18,6 +18,7 @@ public class VBoxAffichagePlanning extends VBox {
     private DateCalendrier date;
     private Button boutonSupprimer;
     private TableRow<Reservation> selectedRow;
+    private static DataBase dataBase = new DataBase();
     public VBoxAffichagePlanning(Controleur controleur){
         super(10);
         date = new DateCalendrier();
@@ -88,7 +89,6 @@ public class VBoxAffichagePlanning extends VBox {
     }
 
     public void ajoutTable(DateCalendrier parDate, String parNiveau, String parCours, PlageHoraire parPlageHoraire){
-        DataBase dataBase = new DataBase();
 
         LocalDate dateTable = LocalDate.of(parDate.getAnnee(), parDate.getMois(), parDate.getJour());
 
@@ -104,8 +104,6 @@ public class VBoxAffichagePlanning extends VBox {
     }
 
     public void supprimerTable(DateCalendrier parDate, PlageHoraire parPlageHoraire){
-        DataBase dataBase = new DataBase();
-
         LocalDate dateTable = LocalDate.of(parDate.getAnnee(), parDate.getMois(), parDate.getJour());
 
         Horaire heureDebut = parPlageHoraire.getChHoraireDebut();
@@ -122,5 +120,4 @@ public class VBoxAffichagePlanning extends VBox {
     public Reservation selectedReservation(){
         return selectedRow.getItem();
     }
-
 }
