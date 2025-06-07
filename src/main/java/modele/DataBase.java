@@ -56,6 +56,8 @@ public class DataBase {
             pstmt.setDate(1, java.sql.Date.valueOf(date));
             pstmt.setTimestamp(2, Timestamp.valueOf(debut));
             pstmt.setTimestamp(3, Timestamp.valueOf(fin));
+
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
