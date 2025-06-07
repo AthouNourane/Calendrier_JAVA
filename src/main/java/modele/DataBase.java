@@ -42,6 +42,26 @@ public class DataBase {
         }
     }
 
+    public void supprimerReservation(LocalDate date,
+                                     LocalDateTime debut, LocalDateTime fin) {
+        String sql = """
+        DELETE FROM "Reservation"
+        WHERE "Date" = ?
+        AND "Heure" = tsrange(?, ?, '[]')
+    """;
+
+        try (Connection conn = DataBase.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setDate(1, java.sql.Date.valueOf(date));
+            pstmt.setTimestamp(2, Timestamp.valueOf(debut));
+            pstmt.setTimestamp(3, Timestamp.valueOf(fin));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void chargerReservationsDepuisBD(Map<Integer, Set<Reservation>> treeMap) {
 
         String sql = """
